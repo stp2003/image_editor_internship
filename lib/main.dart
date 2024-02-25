@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:image_editor_internship/screens/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   runApp(const MyApp());
 }

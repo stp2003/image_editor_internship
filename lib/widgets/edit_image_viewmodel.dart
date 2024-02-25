@@ -184,6 +184,7 @@ abstract class EditImageViewModel extends State<EditImageScreen> {
             fontStyle: FontStyle.normal,
             fontSize: 20,
             textAlign: TextAlign.left,
+            fontFamily: 'Arial',
           ),
         );
         Navigator.of(context).pop();
