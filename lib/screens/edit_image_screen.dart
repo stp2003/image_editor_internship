@@ -19,6 +19,13 @@ class EditImageScreen extends StatefulWidget {
 }
 
 class _EditImageScreenState extends EditImageViewModel {
+  List<String> fontFamilies = [
+    'Arial',
+    'Roboto',
+    'Helvetica',
+    'Times New Roman',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,9 +97,7 @@ class _EditImageScreenState extends EditImageViewModel {
 
   Widget get _selectedImage => Center(
         child: Image.file(
-          File(
-            widget.selectedImage,
-          ),
+          File(widget.selectedImage),
           fit: BoxFit.cover,
           width: MediaQuery.of(context).size.width,
         ),
@@ -108,7 +113,7 @@ class _EditImageScreenState extends EditImageViewModel {
         ),
       );
 
-  // Appbar ->
+  //?? Appbar ->
   AppBar get _appBar => AppBar(
         backgroundColor: Colors.black26,
         leading: const BackButton(),
@@ -143,6 +148,27 @@ class _EditImageScreenState extends EditImageViewModel {
                 onPressed: decreaseFontSize,
                 tooltip: 'Decrease font size',
               ),
+              DropdownButton<String>(
+                value: texts.isNotEmpty ? texts[currentIndex].fontFamily : null,
+                onChanged: (String? newValue) {
+                  setState(
+                    () {
+                      if (texts.isNotEmpty) {
+                        texts[currentIndex].fontFamily = newValue!;
+                      }
+                    },
+                  );
+                },
+                items: fontFamilies.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  },
+                ).toList(),
+              ),
+
               IconButton(
                 icon: const Icon(
                   Icons.format_align_left,
@@ -194,10 +220,11 @@ class _EditImageScreenState extends EditImageViewModel {
               Tooltip(
                 message: 'Red',
                 child: GestureDetector(
-                    onTap: () => changeTextColor(Colors.red),
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.red,
-                    )),
+                  onTap: () => changeTextColor(Colors.red),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
+                ),
               ),
               const SizedBox(width: 5.0),
 
@@ -215,10 +242,11 @@ class _EditImageScreenState extends EditImageViewModel {
               Tooltip(
                 message: 'Black',
                 child: GestureDetector(
-                    onTap: () => changeTextColor(Colors.black),
-                    child: const CircleAvatar(
-                      backgroundColor: Colors.black,
-                    )),
+                  onTap: () => changeTextColor(Colors.black),
+                  child: const CircleAvatar(
+                    backgroundColor: Colors.black,
+                  ),
+                ),
               ),
               const SizedBox(width: 5.0),
               Tooltip(
