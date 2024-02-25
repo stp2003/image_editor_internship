@@ -20,6 +20,7 @@ class ImageText extends StatelessWidget {
         fontWeight: textInfo.fontWeight,
         fontStyle: textInfo.fontStyle,
         color: textInfo.color,
+        fontFamily: textInfo.fontFamily,
       ),
     );
   }
